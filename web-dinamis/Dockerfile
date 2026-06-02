@@ -11,7 +11,7 @@ COPY package*.json .
 # Install dependencies
 RUN npm install
 
-# Copy source code 
+# Copy source code #
 COPY . .
 
 # Build next.js
