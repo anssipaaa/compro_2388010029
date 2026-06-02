@@ -9,11 +9,11 @@ services:
       MARIADB_PASSWORD: 12345
     volumes:
       - db_data:/var/lib/mysql
-      - ./db_data/dbcompro_nim.sql:/docker-entrypoint-initdb.d/dbcompro_nim.sql:ro
+      - ./db_data/dbcompro.sql:/docker-entrypoint-initdb.d/dbcompro.sql:ro
     restart: always
 
   container-statis:
-    image: anssipaaa/dbcompro:latest
+    image: anssipaaa/anssipaaa:latest
     ports:
       - "80:80"
     restart: always
