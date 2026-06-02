@@ -29,7 +29,7 @@ services:
       DB_NAME: dbcompro
       DB_HOST: localhost
       NEXTAUTH_SECRET: your-super-secret-key-1234
-      NEXTAUTH_URL: http://localhost:3000
+      NEXTAUTH_URL: http://15.135.236.1:3000
     depends_on:
       - db-webdinamis
 
