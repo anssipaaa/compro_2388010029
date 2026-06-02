@@ -27,7 +27,7 @@ services:
       DB_USER: userwebdinamis_2388010029
       DB_PASSWORD: 12345
       DB_NAME: dbcompro
-      DB_HOST: localhost
+      DB_HOST: db-webdinamis
       NEXTAUTH_SECRET: your-super-secret-key-1234
       NEXTAUTH_URL: http://15.135.236.1:3000
     depends_on:
