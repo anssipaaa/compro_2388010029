@@ -1,11 +1,10 @@
-name: Deploy WEb Static to AWS EC2
+name: Deploy Web Static to AWS EC2
 on:
   push:
     branches: [ main ]
     paths: 
     - 'web-statis/**'
-    - '.github/workflows/deploy.yml'
-
+    - '.github/workflows/deploy.yaml'
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -24,12 +23,7 @@ jobs:
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/web-dinamis:latest
 
-  deploy:
-    needs: build-and-deploy
-    runs-on: ubuntu-latest
-    name: Deploy to EC2 via SSH and run docker compose
-    steps:
-    - name: SSH and deploy
+    - name: Deploy to EC2 via SSH and run docker compose 
       uses: appleboy/ssh-action@v1.0.3
       with:
         host: ${{ secrets.AWS_HOST }}
@@ -37,6 +31,7 @@ jobs:
         key: ${{ secrets.AWS_PRIVATE_KEY }}
         port: 22
         script: |
-          docker rm -f web-dinamis || true
-          docker pull ${{ secrets.DOCKERHUB_USERNAME }}/web-dinamis:latest
-          docker run -d --name web-dinamis -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/web-dinamis:latest
+          cd /home/ubuntu 
+          docker compose -f docker-compose.yml down
+          docker compose -f docker-compose.yml pull
+          docker compose -f docker-compose.yml up -d
